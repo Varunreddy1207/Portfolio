@@ -1,95 +1,83 @@
 import { useEffect, useRef, useState } from 'react';
-import { Cpu, Terminal } from 'lucide-react';
-import { PORTFOLIO_CONFIG } from '../config/portfolioData';
+
+const IMAGES = [
+  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
+  'https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif',
+  'https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif',
+  'https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif',
+  'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
+  'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
+  'https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif',
+  'https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif',
+  'https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif',
+  'https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif',
+  'https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif',
+  'https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif',
+  'https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif',
+  'https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif',
+  'https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif',
+  'https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif',
+  'https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif',
+  'https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif',
+  'https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif',
+  'https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif',
+  'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
+];
+
+const ROW1 = IMAGES.slice(0, 11);
+const ROW2 = IMAGES.slice(11);
+
+const tripled = (arr: string[]) => [...arr, ...arr, ...arr];
+
+function Row({ images, transform }: { images: string[]; transform: string }) {
+  return (
+    <div
+      className="flex gap-3"
+      style={{ transform, willChange: 'transform', width: 'max-content' }}
+    >
+      {tripled(images).map((src, i) => (
+        <img
+          key={i}
+          src={src}
+          alt=""
+          loading="lazy"
+          draggable={false}
+          className="flex-shrink-0 rounded-2xl object-cover"
+          style={{ width: 420, height: 270 }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function MarqueeSection() {
-  const [offset1, setOffset1] = useState(0);
-  const [offset2, setOffset2] = useState(0);
-  const requestRef = useRef<number>(0);
-  const lastTimeRef = useRef<number>(0);
-
-  const { tickerItems } = PORTFOLIO_CONFIG;
-  const row1 = tickerItems;
-  const row2 = [...tickerItems].reverse();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    const SPEED_ROW1 = 45; // pixels per second
-    const SPEED_ROW2 = 35;
-
-    const animate = (time: number) => {
-      if (lastTimeRef.current !== 0) {
-        const delta = (time - lastTimeRef.current) / 1000;
-        setOffset1((prev) => (prev + delta * SPEED_ROW1) % 2400);
-        setOffset2((prev) => (prev - delta * SPEED_ROW2) % 2400);
-      }
-      lastTimeRef.current = time;
-      requestRef.current = requestAnimationFrame(animate);
+    const onScroll = () => {
+      if (!sectionRef.current) return;
+      const sectionTop =
+        sectionRef.current.getBoundingClientRect().top + window.scrollY;
+      setOffset((window.scrollY - sectionTop + window.innerHeight) * 0.3);
     };
-
-    requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
-
-  const tripled = (arr: string[]) => [...arr, ...arr, ...arr, ...arr];
 
   return (
     <section
-      className="relative z-10 border-y border-slate-800/80 py-8 md:py-12 overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #07090E 0%, #0C101A 50%, #07090E 100%)',
-      }}
+      ref={sectionRef}
+      className="flex flex-col gap-3 pb-10 pt-24 sm:pt-32 md:pt-40"
+      style={{ background: '#0C0C0C', overflow: 'hidden' }}
     >
-      {/* Decorative gradient masks at edge */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-20 w-24 bg-gradient-to-r from-[#07090E] to-transparent sm:w-36" />
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-20 w-24 bg-gradient-to-l from-[#07090E] to-transparent sm:w-36" />
-
-      <div className="flex flex-col gap-4 sm:gap-6">
-        {/* Row 1 - Left to Right */}
-        <div
-          className="flex gap-4 sm:gap-6"
-          style={{
-            transform: `translateX(-${offset1}px)`,
-            willChange: 'transform',
-            width: 'max-content',
-          }}
-        >
-          {tripled(row1).map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-3 rounded-full border border-sky-500/20 bg-slate-900/60 px-5 py-2.5 sm:px-7 sm:py-3 backdrop-blur-sm transition-all hover:border-sky-400"
-            >
-              <Cpu className="h-3.5 w-3.5 text-sky-400" />
-              <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-widest text-slate-200 whitespace-nowrap">
-                {item}
-              </span>
-              <span className="text-sky-500 text-xs font-bold">•</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Row 2 - Right to Left */}
-        <div
-          className="flex gap-4 sm:gap-6"
-          style={{
-            transform: `translateX(${offset2}px)`,
-            willChange: 'transform',
-            width: 'max-content',
-          }}
-        >
-          {tripled(row2).map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-3 rounded-full border border-slate-700/40 bg-slate-950/70 px-5 py-2.5 sm:px-7 sm:py-3 backdrop-blur-sm transition-all hover:border-sky-400/50"
-            >
-              <Terminal className="h-3.5 w-3.5 text-sky-400" />
-              <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-widest text-slate-300 whitespace-nowrap">
-                {item}
-              </span>
-              <span className="text-sky-400/50 text-xs font-bold">//</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Row images={ROW1} transform={`translateX(${offset - 200}px)`} />
+      <Row images={ROW2} transform={`translateX(${-(offset - 200)}px)`} />
     </section>
   );
 }

@@ -8,55 +8,17 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  background: #080A0F;
-  color: #F1F5F9;
-  font-family: 'Kanit', sans-serif;
-}
-
+html,
 body,
 #root {
-  background: #080A0F;
-  overflow-x: clip;
+  background: #0c0c0c;
+  font-family: 'Kanit', sans-serif;
+  scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #080A0F;
-}
-::-webkit-scrollbar-thumb {
-  background: #1E293B;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #38BDF8;
-}
-
-/* Hero Typography Gradients */
 .hero-heading {
-  background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 50%, #94A3B8 100%);
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.hero-subheading {
-  background: linear-gradient(90deg, #00D2FF 0%, #38BDF8 50%, #93C5FD 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.titanium-card {
-  background: rgba(18, 22, 31, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.titanium-card:hover {
-  border-color: rgba(56, 189, 248, 0.4);
 }
