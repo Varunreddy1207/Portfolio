@@ -1,0 +1,56 @@
+<svg width="600" height="700" viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="300" y1="0" x2="300" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E121B"/>
+      <stop offset="1" stop-color="#05070B"/>
+    </linearGradient>
+    <linearGradient id="neonCyan" x1="0" y1="0" x2="600" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D2FF"/>
+      <stop offset="0.5" stop-color="#0070F3"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="300" cy="280" r="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D2FF" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#00D2FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="700" rx="36" fill="url(#bgGrad)"/>
+  <rect x="2" y="2" width="596" height="696" rx="34" stroke="url(#neonCyan)" stroke-width="2" stroke-opacity="0.4"/>
+
+  <!-- Radial Cyber Halo -->
+  <circle cx="300" cy="280" r="220" fill="url(#halo)"/>
+
+  <!-- Geometric Tech Grid Background -->
+  <g opacity="0.12">
+    <circle cx="300" cy="280" r="160" stroke="#00D2FF" stroke-width="1.5" stroke-dasharray="6 6"/>
+    <circle cx="300" cy="280" r="210" stroke="#00D2FF" stroke-width="1"/>
+    <path d="M100 280H500M300 80V480" stroke="#00D2FF" stroke-width="1" stroke-dasharray="4 8"/>
+  </g>
+
+  <!-- Futuristic Minimal Portrait Silhouette -->
+  <!-- Shoulders / Torso -->
+  <path d="M160 620C160 510 210 460 300 460C390 460 440 510 440 620V700H160V620Z" fill="#141B28" stroke="#00D2FF" stroke-width="1.5" stroke-opacity="0.5"/>
+  
+  <!-- Neck -->
+  <rect x="270" y="380" width="60" height="90" rx="10" fill="#1A2334"/>
+  
+  <!-- Head Silhouette -->
+  <path d="M220 270C220 180 250 140 300 140C350 140 380 180 380 270C380 350 350 390 300 390C250 390 220 350 220 270Z" fill="#161E2E" stroke="#38BDF8" stroke-width="1.5"/>
+
+  <!-- Cyber Visor / AI Focus Beam -->
+  <rect x="240" y="240" width="120" height="24" rx="12" fill="#00D2FF" fill-opacity="0.85"/>
+  <rect x="245" y="243" width="110" height="18" rx="9" fill="#00F0FF" filter="drop-shadow(0px 0px 10px #00F0FF)"/>
+  <line x1="220" y1="252" x2="380" y2="252" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- HUD Code Tags on Chest -->
+  <g transform="translate(230, 520)">
+    <rect width="140" height="32" rx="16" fill="#090D15" stroke="#00D2FF" stroke-width="1"/>
+    <text x="70" y="21" text-anchor="middle" fill="#00D2FF" font-family="'Kanit', sans-serif" font-size="12" font-weight="600" letter-spacing="2">AI DEVELOPER</text>
+  </g>
+
+  <!-- Name & Info Bar at Bottom -->
+  <rect x="40" y="610" width="520" height="60" rx="16" fill="#090D15" fill-opacity="0.8" stroke="#1E293B" stroke-width="1"/>
+  <text x="300" y="638" text-anchor="middle" fill="#FFFFFF" font-family="'Kanit', sans-serif" font-size="15" font-weight="700" letter-spacing="2">MASIREDDY VARUN KUMAR REDDY</text>
+  <text x="300" y="656" text-anchor="middle" fill="#64748B" font-family="'Kanit', sans-serif" font-size="11" font-weight="400" letter-spacing="1">SANJAY GHODAWAT UNIVERSITY • B.TECH AI &amp; DS</text>
+</svg>

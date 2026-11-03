@@ -1,20 +1,24 @@
 import HeroSection from './sections/HeroSection';
 import MarqueeSection from './sections/MarqueeSection';
 import AboutSection from './sections/AboutSection';
-import ServicesSection from './sections/ServicesSection';
+import SkillsSection from './sections/SkillsSection';
 import ProjectsSection from './sections/ProjectsSection';
+import JourneySection from './sections/JourneySection';
+import ContactSection from './sections/ContactSection';
 
 export default function App() {
   return (
     <div
       className="font-kanit"
-      style={{ background: '#0C0C0C', overflowX: 'clip' }}
+      style={{ background: '#080A0F', overflowX: 'clip' }}
     >
       <HeroSection />
       <MarqueeSection />
       <AboutSection />
-      <ServicesSection />
+      <SkillsSection />
       <ProjectsSection />
+      <JourneySection />
+      <ContactSection />
     </div>
   );
 }
